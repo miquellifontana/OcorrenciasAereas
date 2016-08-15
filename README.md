@@ -40,7 +40,7 @@ aeronaves_envolvidas | INT(11) | Quantidade de aeronaves envolvidas na ocorrênc
 saida_pista | INT(11) | Informação se houve ou não saída de pista na ocorrência
 dia_extracao | DATE | Dia da extração dos dados na base de dados do CENIPA
 
-###### Tabela de Aeronaves
+##### Tabela de Aeronaves
 Nome dos Campos | Tipo de dados | Significado
 --------------- | ------------- | -----------
 codigo_aeronave | INT(11) | Código de identificação de aeronave
@@ -71,3 +71,9 @@ dia_extracao | DATE | Dia da extração dos dados na base de dados do CENIPA
 
 #### Formato de disponibilização dos dados
  - Os dados disponibilizados estão no formato CSV com o separados ','
+ 
+#### Exemplo de consulta
+ - Consultar ocorrências com número de fatalidades maior ou igual a 199.
+codigo_ocorrencia | classificacao | tipo | localidade | uf | pais | datahora | quantidade_assentos | quantidade_fatalidades
+----------------- | ------------- | ---- | ---------- | -- | ---- | -------- | ------------------- | ----------------------
+29859 | ACIDENTE | PERDA DE CONTROLE NO SOLO | SÃO PAULO | SP | BRASIL | 2007-07-17 21:54:00 | 185 | 199
