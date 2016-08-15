@@ -74,6 +74,6 @@ dia_extracao | DATE | Dia da extração dos dados na base de dados do CENIPA
  
 #### Exemplo de consulta
 ##### Consultar ocorrências com número de fatalidades maior ou igual a 199.
-codigo_ocorrencia | classificacao | tipo | localidade | uf | pais | datahora | quantidade_fatalidades
------------------ | ------------- | ---- | ---------- | -- | ---- | -------- | ----------------------
-29859 | ACIDENTE | PERDA DE CONTROLE NO SOLO | SÃO PAULO | SP | BRASIL | 2007-07-17 21:54:00 | 199
+codigo_ocorrencia | classificacao | tipo | localidade | uf | data | quantidade_fatalidades
+----------------- | ------------- | ---- | ---------- | -- | ---- | ----------------------
+29859 | ACIDENTE | PERDA DE CONTROLE NO SOLO | SÃO PAULO | SP | 2007-07-17 | 199
