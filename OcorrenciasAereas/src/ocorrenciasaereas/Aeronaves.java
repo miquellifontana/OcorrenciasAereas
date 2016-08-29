@@ -33,7 +33,7 @@ public class Aeronaves {
     private String faseOperacao ; //INDETERMINADA
     private String tipoOperacao ; //INSTRUÇÃO
     private String nivelDano ; //SUBSTANCIAL
-    private int quantidadeFatalidades ; //NULL
+    private Integer quantidadeFatalidades ; //NULL
     private Date dia_extracao ; //2016-07-30
 
     public int getCodigoAeronave() {
@@ -196,7 +196,7 @@ public class Aeronaves {
         this.nivelDano = nivelDano;
     }
 
-    public int getQuantidadeFatalidades() {
+    public Integer getQuantidadeFatalidades() {
         return quantidadeFatalidades;
     }
 
