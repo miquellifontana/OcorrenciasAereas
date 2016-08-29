@@ -200,7 +200,7 @@ public class Aeronaves {
         return quantidadeFatalidades;
     }
 
-    public void setQuantidadeFatalidades(int quantidadeFatalidades) {
+    public void setQuantidadeFatalidades(Integer quantidadeFatalidades) {
         this.quantidadeFatalidades = quantidadeFatalidades;
     }
 
