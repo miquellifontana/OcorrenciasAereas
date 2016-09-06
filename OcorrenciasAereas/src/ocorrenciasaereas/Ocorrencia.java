@@ -4,46 +4,29 @@ import java.util.Date;
 
 /**
  * Classe que representa um registro do arquivo ocorrencia.txt.
- * 
- * TODO: Verificar como tratar os campos que no arquivo são String mas 
+ *
+ * TODO: Verificar como tratar os campos que no arquivo são String mas
  * possivelmente se comportarão como Boolean
  */
 public class Ocorrencia {
 
     private int codigoOcorrencia;
-
     private String classificacao;
-
     private String tipo;
-
     private String localidade;
-
     private String uf;
-
     private String pais;
-
     private String aerodromo;
-
     private Date diaOcorrencia;
-
     private String horarioOcorrencia;
-
     private String seraInvestigada;
-
     private String comandoInvestigacao;
-
     private String numeroRelatorio;
-
     private String relatorioPublicado;
-
     private Date diaPublicacao;
-
     private Integer quantidadeRecomendacoes;
-
     private Integer aeronavesEnvolvidades;
-
     private Integer saidaPista;
-
     private Date diaExtracao;
 
     public int getCodigoOcorrencia() {

@@ -8,10 +8,12 @@ package ocorrenciasaereas;
 import java.util.Date;
 
 /**
- *
- * @author guilhermen
+ *  Classe que representa um registro do arquivo aeronave.txt.
+ * 
+ * TODO: Verificar como tratar os campos que no arquivo são String mas
+ * possivelmente se comportarão como Boolean
  */
-public class Aeronaves {
+public class Aeronave {
     
     private int codigoAeronave; // 4
     private int codigoOcorrencia ; //45602
