@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class Ocorrencia {
 
-    private int codigoOcorrencia;
+    private Integer codigoOcorrencia;
     private String classificacao;
     private String tipo;
     private String localidade;
@@ -29,11 +29,32 @@ public class Ocorrencia {
     private Integer saidaPista;
     private Date diaExtracao;
 
-    public int getCodigoOcorrencia() {
+    public Ocorrencia(String[] conteudo) {
+        this.codigoOcorrencia = Integer.parseInt(conteudo[0]);
+        this.classificacao = conteudo[1];
+        this.tipo = conteudo[2];
+        this.localidade = conteudo[3];
+        this.uf = conteudo[4];
+        this.pais = conteudo[5];
+        this.aerodromo = conteudo[6];
+        this.diaOcorrencia = Utilities.convertStringToDate(conteudo[7]);
+        this.horarioOcorrencia = conteudo[8];
+        this.seraInvestigada = conteudo[9];
+        this.comandoInvestigacao = conteudo[10];
+        this.numeroRelatorio = conteudo[11];
+        this.relatorioPublicado = conteudo[12];
+        this.diaPublicacao = Utilities.convertStringToDate(conteudo[13]);
+        this.quantidadeRecomendacoes = Integer.parseInt(conteudo[14]);
+        this.aeronavesEnvolvidades = Integer.parseInt(conteudo[15]);
+        this.saidaPista = Integer.parseInt(conteudo[16]);
+        this.diaExtracao = Utilities.convertStringToDate(conteudo[17]);
+    }
+
+    public Integer getCodigoOcorrencia() {
         return codigoOcorrencia;
     }
 
-    public void setCodigoOcorrencia(int codigoOcorrencia) {
+    public void setCodigoOcorrencia(Integer codigoOcorrencia) {
         this.codigoOcorrencia = codigoOcorrencia;
     }
 

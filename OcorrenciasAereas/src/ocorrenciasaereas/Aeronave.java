@@ -15,18 +15,18 @@ import java.util.Date;
  */
 public class Aeronave {
     
-    private int codigoAeronave; // 4
-    private int codigoOcorrencia ; //45602
+    private Integer codigoAeronave; // 4
+    private Integer codigoOcorrencia ; //45602
     private String matricula ; //PPGXE
-    private int codigoOperador ; //241
+    private Integer codigoOperador ; //241
     private String equipamento ; //AVIÃO
     private String fabricante ; //"NEIVA INDUSTRIA AERONAUTICA"
     private String modelo ; //56-C
     private String tipoMotor ; //PISTÃO
-    private int quantidadeMotores ; //1
-    private int pesoMaximoDecolagem ; //660
-    private int quantidadeAssentos ; //2
-    private int anoFabricacao ; //1962
+    private Integer quantidadeMotores ; //1
+    private Integer pesoMaximoDecolagem ; //660
+    private Integer quantidadeAssentos ; //2
+    private Integer anoFabricacao ; //1962
     private String paisRegistro ; //BRASIL
     private String categoriaRegistro ; //PRI
     private String categoriaAviacao ; //INSTRUÇÃO
@@ -38,19 +38,44 @@ public class Aeronave {
     private Integer quantidadeFatalidades ; //NULL
     private Date dia_extracao ; //2016-07-30
 
-    public int getCodigoAeronave() {
+    public Aeronave(String[] conteudo) {
+        this.codigoAeronave = Integer.parseInt(conteudo[0]);
+        this.codigoOcorrencia = Integer.parseInt(conteudo[1]); //45602
+        this.matricula = conteudo[2]; //PPGXE
+        this.codigoOperador = Integer.parseInt(conteudo[3]); //241
+        this.equipamento = conteudo[4]; //AVIÃO
+        this.fabricante = conteudo[5]; //"NEIVA INDUSTRIA AERONAUTICA"
+        this.modelo = conteudo[6]; //56-C
+        this.tipoMotor = conteudo[7]; //PISTÃO
+        this.quantidadeMotores = Integer.parseInt(conteudo[8]); //1
+        this.pesoMaximoDecolagem = Integer.parseInt(conteudo[9]); //660
+        this.quantidadeAssentos = Integer.parseInt(conteudo[10]); //2
+        this.anoFabricacao = Integer.parseInt(conteudo[11]); //1962
+        this.paisRegistro = conteudo[12]; //BRASIL
+        this.categoriaRegistro = conteudo[13]; //PRI
+        this.categoriaAviacao = conteudo[14]; //INSTRUÇÃO
+        this.origemVoo = conteudo[15]; // SDPW
+        this.destinoVoo = conteudo[16]; //SDPW
+        this.faseOperacao = conteudo[17]; //INDETERMINADA
+        this.tipoOperacao = conteudo[18]; //INSTRUÇÃO
+        this.nivelDano = conteudo[19]; //SUBSTANCIAL
+        this.quantidadeFatalidades = Integer.parseInt(conteudo[20]); //NULL
+        this.dia_extracao = Utilities.convertStringToDate(conteudo[21]); //2016-07-30
+    }
+
+    public Integer getCodigoAeronave() {
         return codigoAeronave;
     }
 
-    public void setCodigoAeronave(int codigoAeronave) {
+    public void setCodigoAeronave(Integer codigoAeronave) {
         this.codigoAeronave = codigoAeronave;
     }
 
-    public int getCodigoOcorrencia() {
+    public Integer getCodigoOcorrencia() {
         return codigoOcorrencia;
     }
 
-    public void setCodigoOcorrencia(int codigoOcorrencia) {
+    public void setCodigoOcorrencia(Integer codigoOcorrencia) {
         this.codigoOcorrencia = codigoOcorrencia;
     }
 
@@ -62,11 +87,11 @@ public class Aeronave {
         this.matricula = matricula;
     }
 
-    public int getCodigoOperador() {
+    public Integer getCodigoOperador() {
         return codigoOperador;
     }
 
-    public void setCodigoOperador(int codigoOperador) {
+    public void setCodigoOperador(Integer codigoOperador) {
         this.codigoOperador = codigoOperador;
     }
 
@@ -102,35 +127,35 @@ public class Aeronave {
         this.tipoMotor = tipoMotor;
     }
 
-    public int getQuantidadeMotores() {
+    public Integer getQuantidadeMotores() {
         return quantidadeMotores;
     }
 
-    public void setQuantidadeMotores(int quantidadeMotores) {
+    public void setQuantidadeMotores(Integer quantidadeMotores) {
         this.quantidadeMotores = quantidadeMotores;
     }
 
-    public int getPesoMaximoDecolagem() {
+    public Integer getPesoMaximoDecolagem() {
         return pesoMaximoDecolagem;
     }
 
-    public void setPesoMaximoDecolagem(int pesoMaximoDecolagem) {
+    public void setPesoMaximoDecolagem(Integer pesoMaximoDecolagem) {
         this.pesoMaximoDecolagem = pesoMaximoDecolagem;
     }
 
-    public int getQuantidadeAssentos() {
+    public Integer getQuantidadeAssentos() {
         return quantidadeAssentos;
     }
 
-    public void setQuantidadeAssentos(int quantidadeAssentos) {
+    public void setQuantidadeAssentos(Integer quantidadeAssentos) {
         this.quantidadeAssentos = quantidadeAssentos;
     }
 
-    public int getAnoFabricacao() {
+    public Integer getAnoFabricacao() {
         return anoFabricacao;
     }
 
-    public void setAnoFabricacao(int anoFabricacao) {
+    public void setAnoFabricacao(Integer anoFabricacao) {
         this.anoFabricacao = anoFabricacao;
     }
 
