@@ -9,12 +9,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
- * @author guilhermen
+ * Classe Utilitária com métodos Estáticos para serem utilizados no projeto.
  */
 public class Utilities {
     

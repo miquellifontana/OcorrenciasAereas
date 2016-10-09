@@ -11,9 +11,11 @@ public class OcorrenciasAereas {
     public static void main(String[] args) {
         GerenciadorAeronaves gerenciadorDeAeronaves = new GerenciadorAeronaves();
         GerenciadorOcorrencias gerenciadorDeOcorrencias = new GerenciadorOcorrencias();
-        
-        gerenciadorDeOcorrencias.carregaConteudo();
-        gerenciadorDeAeronaves.carregaConteudo();
+
+        gerenciadorDeOcorrencias.carregaConteudo(
+                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/ocorrencia.csv");
+        gerenciadorDeAeronaves.carregaConteudo(
+                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/ocorrencia.csv");
     }
-    
+
 }
