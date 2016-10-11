@@ -27,7 +27,7 @@ public abstract class GerenciadorBasico implements Gerenciador {
     @Override
     public CSVReader loadFromURL(URL url) throws IOException {
         Reader source = new InputStreamReader(url.openStream());
-        CSVReader reader = new CSVReader(source, ';');
+        CSVReader reader = new CSVReader(source, ',');
         return reader;
     }
 }
