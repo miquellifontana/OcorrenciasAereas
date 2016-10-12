@@ -8,7 +8,7 @@ import java.util.Collection;
 /**
  * Implementação de um {@link Gerenciador} para a classe {@link Ocorrencia}.
  *
- *  Sua utilização requer um endereço de uma URL
+ * Sua utilização requer um endereço de uma URL
  */
 public class GerenciadorOcorrencias extends GerenciadorBasico {
 
@@ -29,7 +29,10 @@ public class GerenciadorOcorrencias extends GerenciadorBasico {
     @Override
     public void parseFromInputStream(CSVReader reader) throws IOException {
         System.out.println("parse ocorrencia");
+
         String[] line;
+        reader.readNext();//Ignora a primeira de cabeçalho
+
         while ((line = reader.readNext()) != null) {
             Ocorrencia ocorrencia = new Ocorrencia(line);
             this.ocorrencias.add(ocorrencia);

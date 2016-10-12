@@ -7,8 +7,8 @@ import java.util.Collection;
 
 /**
  * Implementação de um {@link Gerenciador} para a classe {@link Aeronave}.
- *  
- *  Sua utilização requer um endereço de uma URL
+ *
+ * Sua utilização requer um endereço de uma URL
  */
 public class GerenciadorAeronaves extends GerenciadorBasico {
 
@@ -29,7 +29,10 @@ public class GerenciadorAeronaves extends GerenciadorBasico {
     @Override
     public void parseFromInputStream(CSVReader reader) throws IOException {
         System.out.println("parse aeronave");
+
         String[] line;
+        reader.readNext();//Ignora a primeira de cabeçalho
+
         while ((line = reader.readNext()) != null) {
             Aeronave aeronave = new Aeronave(line);
             this.aeronaves.add(aeronave);
