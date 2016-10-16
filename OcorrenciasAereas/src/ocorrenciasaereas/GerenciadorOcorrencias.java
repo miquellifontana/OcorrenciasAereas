@@ -36,6 +36,7 @@ public class GerenciadorOcorrencias extends GerenciadorBasico {
         while ((line = reader.readNext()) != null) {
             Ocorrencia ocorrencia = new Ocorrencia(line);
             this.ocorrencias.add(ocorrencia);
+            System.err.println(ocorrencia.toString());
         }
     }
 }

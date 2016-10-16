@@ -18,14 +18,15 @@ public class Ocorrencia {
     private String pais;
     private String aerodromo;
     private Date diaOcorrencia;
-    private String horarioOcorrencia;
+    private String horario;
     private String seraInvestigada;
     private String comandoInvestigacao;
+    private String statusInvestigacao;
     private String numeroRelatorio;
     private String relatorioPublicado;
     private Date diaPublicacao;
     private Integer quantidadeRecomendacoes;
-    private Integer aeronavesEnvolvidades;
+    private Integer aeronavesEnvolvidas;
     private Integer saidaPista;
     private Date diaExtracao;
 
@@ -38,16 +39,28 @@ public class Ocorrencia {
         this.pais = conteudo[5];
         this.aerodromo = conteudo[6];
         this.diaOcorrencia = Utilities.convertStringToDate(conteudo[7]);
-        this.horarioOcorrencia = conteudo[8];
+        this.horario = conteudo[8];
         this.seraInvestigada = conteudo[9];
         this.comandoInvestigacao = conteudo[10];
-        this.numeroRelatorio = conteudo[11];
-        this.relatorioPublicado = conteudo[12];
-        this.diaPublicacao = Utilities.convertStringToDate(conteudo[13]);
-        this.quantidadeRecomendacoes = Integer.parseInt(conteudo[14]);
-        this.aeronavesEnvolvidades = Integer.parseInt(conteudo[15]);
-        this.saidaPista = Integer.parseInt(conteudo[16]);
-        this.diaExtracao = Utilities.convertStringToDate(conteudo[17]);
+        this.statusInvestigacao = conteudo[11];
+        this.numeroRelatorio = conteudo[12];
+        this.relatorioPublicado = conteudo[13];
+        this.diaPublicacao = Utilities.convertStringToDate(conteudo[14]);
+        this.quantidadeRecomendacoes = Integer.parseInt(conteudo[15]);
+        this.aeronavesEnvolvidas = Integer.parseInt(conteudo[16]);
+        this.saidaPista = conteudo[17].equals("NULL") ? null : Integer.parseInt(conteudo[17]);
+        this.diaExtracao = Utilities.convertStringToDate(conteudo[18]);
+    }
+
+    @Override
+    public String toString() {
+        return "Ocorrencia: "
+                + "|" + codigoOcorrencia
+                + "|" + this.classificacao
+                + "|" + this.tipo
+                + "|" + this.localidade
+                + "|" + this.diaOcorrencia
+                + "|" + this.aeronavesEnvolvidas;
     }
 
     public Integer getCodigoOcorrencia() {
@@ -114,12 +127,12 @@ public class Ocorrencia {
         this.diaOcorrencia = diaOcorrencia;
     }
 
-    public String getHorarioOcorrencia() {
-        return horarioOcorrencia;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setHorarioOcorrencia(String horarioOcorrencia) {
-        this.horarioOcorrencia = horarioOcorrencia;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
     public String getSeraInvestigada() {
@@ -136,6 +149,14 @@ public class Ocorrencia {
 
     public void setComandoInvestigacao(String comandoInvestigacao) {
         this.comandoInvestigacao = comandoInvestigacao;
+    }
+
+    public String getStatusInvestigacao() {
+        return statusInvestigacao;
+    }
+
+    public void setStatusInvestigacao(String statusInvestigacao) {
+        this.statusInvestigacao = statusInvestigacao;
     }
 
     public String getNumeroRelatorio() {
@@ -170,12 +191,12 @@ public class Ocorrencia {
         this.quantidadeRecomendacoes = quantidadeRecomendacoes;
     }
 
-    public Integer getAeronavesEnvolvidades() {
-        return aeronavesEnvolvidades;
+    public Integer getAeronavesEnvolvidas() {
+        return aeronavesEnvolvidas;
     }
 
-    public void setAeronavesEnvolvidades(Integer aeronavesEnvolvidades) {
-        this.aeronavesEnvolvidades = aeronavesEnvolvidades;
+    public void setAeronavesEnvolvidas(Integer aeronavesEnvolvidas) {
+        this.aeronavesEnvolvidas = aeronavesEnvolvidas;
     }
 
     public Integer getSaidaPista() {

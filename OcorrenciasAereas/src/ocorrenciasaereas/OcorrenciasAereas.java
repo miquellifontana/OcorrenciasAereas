@@ -17,5 +17,4 @@ public class OcorrenciasAereas {
         gerenciadorDeAeronaves.carregaConteudo(
                 "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/ocorrencia.csv");
     }
-
 }
