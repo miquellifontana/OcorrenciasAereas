@@ -15,6 +15,18 @@ import java.util.Date;
  */
 public class Utilities {
     
+    /**
+     * Retorna um {@link Date} convertido a partir da data contida na String informada.
+     *
+     * @param dateString
+     *   String contendo uma data no formato "yyyy-MM-dd".
+     *
+     * @return 
+     *   Uma nova {@link Date} -
+     *     se a String pode ser convertida para um Date.
+     *   null -
+     *     se a String não pode ser convertida para um Date
+     */
     public static Date convertStringToDate(String dateString) {
 
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -26,5 +38,20 @@ public class Utilities {
         }
         return date;
     }
-    
+
+    /**
+     * Retorna um {@link Integer} convertido a partir da String informada.
+     * 
+     * O método retorna o valor inteiro contido na String, retornando zero caso 
+     * o conteúdo da String seja "NULL"
+     *
+     * @param string
+     *   String com o valor a ser convertido para Integer.
+     *
+     * @return 
+     *   Um novo {@link Integer} com o valor da String.
+     */
+    public static Integer convertStringToInteger(String string){
+        return string.equals("NULL") ? 0 : Integer.parseInt(string);
+    }
 }

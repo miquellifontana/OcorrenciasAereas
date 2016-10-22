@@ -31,7 +31,7 @@ public class Ocorrencia {
     private Date diaExtracao;
 
     public Ocorrencia(String[] conteudo) {
-        this.codigoOcorrencia = Integer.parseInt(conteudo[0]);
+        this.codigoOcorrencia = Utilities.convertStringToInteger(conteudo[0]);
         this.classificacao = conteudo[1];
         this.tipo = conteudo[2];
         this.localidade = conteudo[3];
@@ -46,9 +46,9 @@ public class Ocorrencia {
         this.numeroRelatorio = conteudo[12];
         this.relatorioPublicado = conteudo[13];
         this.diaPublicacao = Utilities.convertStringToDate(conteudo[14]);
-        this.quantidadeRecomendacoes = Integer.parseInt(conteudo[15]);
-        this.aeronavesEnvolvidas = Integer.parseInt(conteudo[16]);
-        this.saidaPista = conteudo[17].equals("NULL") ? null : Integer.parseInt(conteudo[17]);
+        this.quantidadeRecomendacoes = Utilities.convertStringToInteger(conteudo[15]);
+        this.aeronavesEnvolvidas = Utilities.convertStringToInteger(conteudo[16]);
+        this.saidaPista = Utilities.convertStringToInteger(conteudo[17]);
         this.diaExtracao = Utilities.convertStringToDate(conteudo[18]);
     }
 

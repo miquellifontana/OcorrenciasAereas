@@ -3,49 +3,49 @@ package ocorrenciasaereas;
 import java.util.Date;
 
 /**
- *  Classe que representa um registro do arquivo aeronave.txt.
- * 
+ * Classe que representa um registro do arquivo aeronave.txt.
+ *
  * TODO: Verificar como tratar os campos que no arquivo são String mas
  * possivelmente se comportarão como Boolean
  */
 public class Aeronave {
-    
+
     private Integer codigoAeronave; // 4
-    private Integer codigoOcorrencia ; //45602
-    private String matricula ; //PPGXE
-    private Integer codigoOperador ; //241
-    private String equipamento ; //AVIÃO
-    private String fabricante ; //"NEIVA INDUSTRIA AERONAUTICA"
-    private String modelo ; //56-C
-    private String tipoMotor ; //PISTÃO
-    private Integer quantidadeMotores ; //1
-    private Integer pesoMaximoDecolagem ; //660
-    private Integer quantidadeAssentos ; //2
-    private Integer anoFabricacao ; //1962
-    private String paisRegistro ; //BRASIL
-    private String categoriaRegistro ; //PRI
-    private String categoriaAviacao ; //INSTRUÇÃO
-    private String origemVoo ; // SDPW
-    private String destinoVoo ; //SDPW
-    private String faseOperacao ; //INDETERMINADA
-    private String tipoOperacao ; //INSTRUÇÃO
-    private String nivelDano ; //SUBSTANCIAL
-    private Integer quantidadeFatalidades ; //NULL
-    private Date dia_extracao ; //2016-07-30
+    private Integer codigoOcorrencia; //45602
+    private String matricula; //PPGXE
+    private Integer codigoOperador; //241
+    private String equipamento; //AVIÃO
+    private String fabricante; //"NEIVA INDUSTRIA AERONAUTICA"
+    private String modelo; //56-C
+    private String tipoMotor; //PISTÃO
+    private Integer quantidadeMotores; //1
+    private Integer pesoMaximoDecolagem; //660
+    private Integer quantidadeAssentos; //2
+    private Integer anoFabricacao; //1962
+    private String paisRegistro; //BRASIL
+    private String categoriaRegistro; //PRI
+    private String categoriaAviacao; //INSTRUÇÃO
+    private String origemVoo; // SDPW
+    private String destinoVoo; //SDPW
+    private String faseOperacao; //INDETERMINADA
+    private String tipoOperacao; //INSTRUÇÃO
+    private String nivelDano; //SUBSTANCIAL
+    private Integer quantidadeFatalidades; //NULL
+    private Date dia_extracao; //2016-07-30
 
     public Aeronave(String[] conteudo) {
-        this.codigoAeronave = Integer.parseInt(conteudo[0]);
-        this.codigoOcorrencia = Integer.parseInt(conteudo[1]); //45602
+        this.codigoAeronave = Utilities.convertStringToInteger(conteudo[0]);
+        this.codigoOcorrencia = Utilities.convertStringToInteger(conteudo[1]); //45602
         this.matricula = conteudo[2]; //PPGXE
-        this.codigoOperador = Integer.parseInt(conteudo[3]); //241
+        this.codigoOperador = Utilities.convertStringToInteger(conteudo[3]); //241
         this.equipamento = conteudo[4]; //AVIÃO
         this.fabricante = conteudo[5]; //"NEIVA INDUSTRIA AERONAUTICA"
         this.modelo = conteudo[6]; //56-C
         this.tipoMotor = conteudo[7]; //PISTÃO
-        this.quantidadeMotores = Integer.parseInt(conteudo[8]); //1
-        this.pesoMaximoDecolagem = Integer.parseInt(conteudo[9]); //660
-        this.quantidadeAssentos = Integer.parseInt(conteudo[10]); //2
-        this.anoFabricacao = Integer.parseInt(conteudo[11]); //1962
+        this.quantidadeMotores = Utilities.convertStringToInteger(conteudo[8]); //1
+        this.pesoMaximoDecolagem = Utilities.convertStringToInteger(conteudo[9]); //660
+        this.quantidadeAssentos = Utilities.convertStringToInteger(conteudo[10]); //2
+        this.anoFabricacao = Utilities.convertStringToInteger(conteudo[11]); //1962
         this.paisRegistro = conteudo[12]; //BRASIL
         this.categoriaRegistro = conteudo[13]; //PRI
         this.categoriaAviacao = conteudo[14]; //INSTRUÇÃO
@@ -54,7 +54,7 @@ public class Aeronave {
         this.faseOperacao = conteudo[17]; //INDETERMINADA
         this.tipoOperacao = conteudo[18]; //INSTRUÇÃO
         this.nivelDano = conteudo[19]; //SUBSTANCIAL
-        this.quantidadeFatalidades = Integer.parseInt(conteudo[20]); //NULL
+        this.quantidadeFatalidades = Utilities.convertStringToInteger(conteudo[20]);
         this.dia_extracao = Utilities.convertStringToDate(conteudo[21]); //2016-07-30
     }
 
@@ -233,6 +233,4 @@ public class Aeronave {
     public void setDia_extracao(Date dia_extracao) {
         this.dia_extracao = dia_extracao;
     }
-    
-    
 }
