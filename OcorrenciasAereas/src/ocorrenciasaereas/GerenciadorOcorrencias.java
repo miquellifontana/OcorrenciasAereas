@@ -3,7 +3,7 @@ package ocorrenciasaereas;
 import com.opencsv.CSVReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Implementação de um {@link Gerenciador} para a classe {@link Ocorrencia}.
@@ -12,17 +12,17 @@ import java.util.Collection;
  */
 public class GerenciadorOcorrencias extends GerenciadorBasico {
 
-    private Collection<Ocorrencia> ocorrencias;
+    private List<Ocorrencia> ocorrencias;
 
     public GerenciadorOcorrencias() {
         this.ocorrencias = new ArrayList<>();
     }
 
-    public Collection<Ocorrencia> getOcorrencia() {
+    public List<Ocorrencia> getOcorrencia() {
         return ocorrencias;
     }
 
-    public void setOcorrencia(Collection<Ocorrencia> ocorrencia) {
+    public void setOcorrencia(List<Ocorrencia> ocorrencia) {
         this.ocorrencias = ocorrencia;
     }
 
@@ -36,7 +36,7 @@ public class GerenciadorOcorrencias extends GerenciadorBasico {
         while ((line = reader.readNext()) != null) {
             Ocorrencia ocorrencia = new Ocorrencia(line);
             this.ocorrencias.add(ocorrencia);
-            System.err.println(ocorrencia.toString());
         }
     }
 }
+
