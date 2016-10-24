@@ -62,7 +62,7 @@ public class Ocorrencia {
                 + "|" + this.diaOcorrencia
                 + "|" + this.aeronavesEnvolvidas;
     }
-
+    
     public Integer getCodigoOcorrencia() {
         return codigoOcorrencia;
     }
