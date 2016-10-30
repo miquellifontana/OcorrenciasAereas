@@ -57,17 +57,17 @@ public class Aeronave {
         this.quantidadeFatalidades = Utilities.convertStringToInteger(conteudo[20]);
         this.dia_extracao = Utilities.convertStringToDate(conteudo[21]); //2016-07-30
     }
-	@Override
-    	public String toString(){
-       		return "Aeronave: "
-                	+ "|" + this.codigoAeronave
-                	+ "|" + this.codigoOcorrencia
-                	+ "|" + this.fabricante
-                	+ "|" + this.modelo
-                	+ "|" + this.anoFabricacao
-                	+ "|" + this.quantidadeFatalidades;                
-   	}
 
+    @Override
+    public String toString() {
+        return "Aeronave: "
+                + "|" + this.codigoAeronave
+                + "|" + this.codigoOcorrencia
+                + "|" + this.fabricante
+                + "|" + this.modelo
+                + "|" + this.anoFabricacao
+                + "|" + this.quantidadeFatalidades;
+    }
 
     public Integer getCodigoAeronave() {
         return codigoAeronave;

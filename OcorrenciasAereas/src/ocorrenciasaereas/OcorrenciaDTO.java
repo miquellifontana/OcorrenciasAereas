@@ -1,5 +1,7 @@
 package ocorrenciasaereas;
 
+import java.util.Date;
+
 /**
  * Classe que representa o modelo para exibição em tela.
  *
@@ -11,6 +13,7 @@ public class OcorrenciaDTO {
     private String tipo;
     private String localidade;
     private String uf;
+    private Date dataOcorrencia;
     private Integer quantidadeFatalidades;
 
     /**
@@ -25,6 +28,17 @@ public class OcorrenciaDTO {
         this.localidade = ocorrencia.getLocalidade();
         this.uf = ocorrencia.getUf();
         this.quantidadeFatalidades = aeronave.getQuantidadeFatalidades();
+    }
+
+    @Override
+    public String toString() {
+        return this.codigoOcorrencia
+                + "|" + this.classificacao
+                + "|" + this.tipo
+                + "|" + this.localidade
+                + "|" + this.uf
+                + "|" + this.dataOcorrencia
+                + "|" + this.quantidadeFatalidades;
     }
 
     public int getCodigoOcorrencia() {
@@ -67,6 +81,14 @@ public class OcorrenciaDTO {
         this.uf = uf;
     }
 
+    public Date getDataOcorrencia() {
+        return dataOcorrencia;
+    }
+
+    public void setDataOcorrencia(Date dataOcorrencia) {
+        this.dataOcorrencia = dataOcorrencia;
+    }
+
     public Integer getQuantidadeFatalidades() {
         return quantidadeFatalidades;
     }
@@ -74,4 +96,5 @@ public class OcorrenciaDTO {
     public void setQuantidadeFatalidades(Integer quantidadeFatalidades) {
         this.quantidadeFatalidades = quantidadeFatalidades;
     }
+
 }
