@@ -1,4 +1,4 @@
-﻿package ocorrenciasaereas;
+package ocorrenciasaereas;
 
 import java.util.Date;
 
