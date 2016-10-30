@@ -1,6 +1,8 @@
 package ocorrenciasaereas;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Classe que representa um registro do arquivo ocorrencia.txt.
@@ -26,9 +28,11 @@ public class Ocorrencia {
     private String relatorioPublicado;
     private Date diaPublicacao;
     private Integer quantidadeRecomendacoes;
-    private Integer aeronavesEnvolvidas;
+    private Integer qtdAeronavesEnvolvidas;
     private Integer saidaPista;
     private Date diaExtracao;
+
+    private List<Aeronave> aeronavesEnvolvidas;
 
     public Ocorrencia(String[] conteudo) {
         this.codigoOcorrencia = Utilities.convertStringToInteger(conteudo[0]);
@@ -47,9 +51,11 @@ public class Ocorrencia {
         this.relatorioPublicado = conteudo[13];
         this.diaPublicacao = Utilities.convertStringToDate(conteudo[14]);
         this.quantidadeRecomendacoes = Utilities.convertStringToInteger(conteudo[15]);
-        this.aeronavesEnvolvidas = Utilities.convertStringToInteger(conteudo[16]);
+        this.qtdAeronavesEnvolvidas = Utilities.convertStringToInteger(conteudo[16]);
         this.saidaPista = Utilities.convertStringToInteger(conteudo[17]);
         this.diaExtracao = Utilities.convertStringToDate(conteudo[18]);
+
+        aeronavesEnvolvidas = new ArrayList<>();
     }
 
     @Override
@@ -60,9 +66,9 @@ public class Ocorrencia {
                 + "|" + this.tipo
                 + "|" + this.localidade
                 + "|" + this.diaOcorrencia
-                + "|" + this.aeronavesEnvolvidas;
+                + "|" + this.qtdAeronavesEnvolvidas;
     }
-    
+
     public Integer getCodigoOcorrencia() {
         return codigoOcorrencia;
     }
@@ -191,12 +197,12 @@ public class Ocorrencia {
         this.quantidadeRecomendacoes = quantidadeRecomendacoes;
     }
 
-    public Integer getAeronavesEnvolvidas() {
-        return aeronavesEnvolvidas;
+    public Integer getQtdAeronavesEnvolvidas() {
+        return qtdAeronavesEnvolvidas;
     }
 
-    public void setAeronavesEnvolvidas(Integer aeronavesEnvolvidas) {
-        this.aeronavesEnvolvidas = aeronavesEnvolvidas;
+    public void setQtdAeronavesEnvolvidas(Integer qtdAeronavesEnvolvidas) {
+        this.qtdAeronavesEnvolvidas = qtdAeronavesEnvolvidas;
     }
 
     public Integer getSaidaPista() {
@@ -213,5 +219,13 @@ public class Ocorrencia {
 
     public void setDiaExtracao(Date diaExtracao) {
         this.diaExtracao = diaExtracao;
+    }
+
+    public List<Aeronave> getAeronavesEnvolvidas() {
+        return aeronavesEnvolvidas;
+    }
+
+    public void setAeronavesEnvolvidas(List<Aeronave> aeronavesEnvolvidas) {
+        this.aeronavesEnvolvidas = aeronavesEnvolvidas;
     }
 }
