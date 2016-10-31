@@ -17,17 +17,21 @@ public class OcorrenciaDTO {
     private Integer quantidadeFatalidades;
 
     /**
+     * Cria um novo OcorreciaDTO a partir de uma Ocorrência.
      *
-     * @param aeronave usado para obter as quantidades de fatalidades
      * @param ocorrencia usado para obter os outros atributos :D
      */
-    public OcorrenciaDTO(Aeronave aeronave, Ocorrencia ocorrencia) {
+    public OcorrenciaDTO(Ocorrencia ocorrencia) {
         this.codigoOcorrencia = ocorrencia.getCodigoOcorrencia();
         this.classificacao = ocorrencia.getClassificacao();
         this.tipo = ocorrencia.getTipo();
         this.localidade = ocorrencia.getLocalidade();
         this.uf = ocorrencia.getUf();
-        this.quantidadeFatalidades = aeronave.getQuantidadeFatalidades();
+        this.quantidadeFatalidades = 0;
+
+        for (Aeronave aeronaveEnvolvida : ocorrencia.getAeronavesEnvolvidas()) {
+            quantidadeFatalidades += aeronaveEnvolvida.getQuantidadeFatalidades();
+        }
     }
 
     @Override
@@ -96,5 +100,4 @@ public class OcorrenciaDTO {
     public void setQuantidadeFatalidades(Integer quantidadeFatalidades) {
         this.quantidadeFatalidades = quantidadeFatalidades;
     }
-
 }
