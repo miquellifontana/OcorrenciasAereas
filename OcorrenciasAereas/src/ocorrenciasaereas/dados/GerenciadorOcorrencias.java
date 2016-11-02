@@ -1,9 +1,10 @@
-package ocorrenciasaereas;
+package ocorrenciasaereas.dados;
 
 import com.opencsv.CSVReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import ocorrenciasaereas.Ocorrencia;
 
 /**
  * Implementação de um {@link Gerenciador} para a classe {@link Ocorrencia}.

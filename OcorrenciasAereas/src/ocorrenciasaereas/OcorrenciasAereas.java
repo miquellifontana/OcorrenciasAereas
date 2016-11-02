@@ -1,5 +1,9 @@
 package ocorrenciasaereas;
 
+import ocorrenciasaereas.ui.PrincipalUI;
+import ocorrenciasaereas.dados.GerenciadorAeronaves;
+import ocorrenciasaereas.dados.GerenciadorOcorrencias;
+
 /**
  * TODO: Documentar
  */

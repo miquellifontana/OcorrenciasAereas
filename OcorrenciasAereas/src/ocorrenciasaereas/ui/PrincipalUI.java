@@ -1,7 +1,8 @@
-package ocorrenciasaereas;
+package ocorrenciasaereas.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import ocorrenciasaereas.OcorrenciaDTO;
 
 /**
  * Interface Gráfica Principal.
@@ -96,12 +97,12 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         menuSair.setText("Sair");
         menuSair.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                menuSairMenuSelected(evt);
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                menuSairMenuSelected(evt);
             }
         });
         menuBarPrincipal.add(menuSair);

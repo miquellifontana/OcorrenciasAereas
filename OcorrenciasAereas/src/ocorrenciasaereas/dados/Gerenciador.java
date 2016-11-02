@@ -1,4 +1,4 @@
-package ocorrenciasaereas;
+package ocorrenciasaereas.dados;
 
 import com.opencsv.CSVReader;
 import java.io.IOException;
