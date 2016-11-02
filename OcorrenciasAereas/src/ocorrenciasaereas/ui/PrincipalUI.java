@@ -3,6 +3,8 @@ package ocorrenciasaereas.ui;
 import java.util.ArrayList;
 import java.util.List;
 import ocorrenciasaereas.OcorrenciaDTO;
+import ocorrenciasaereas.dados.GerenciadorAeronaves;
+import ocorrenciasaereas.dados.GerenciadorOcorrencias;
 
 /**
  * Interface Gráfica Principal.
@@ -146,7 +148,14 @@ public class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_menuSairMenuSelected
 
     private void buttonAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAtualizarMouseClicked
+            GerenciadorAeronaves gerenciadorDeAeronaves = new GerenciadorAeronaves();
+            GerenciadorOcorrencias gerenciadorDeOcorrencias = new GerenciadorOcorrencias();
 
+            gerenciadorDeOcorrencias.carregaConteudo(
+                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/ocorrencia.csv");
+            gerenciadorDeAeronaves.carregaConteudo(
+                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/aeronave.csv");
+        
     }//GEN-LAST:event_buttonAtualizarMouseClicked
 
     /**
