@@ -36,6 +36,24 @@ public class Ocorrencias {
     }
 
     private void vincularAeronavesComOcorrencias() {
+        Map<Integer, List<Aeronave>> mapOcorrenciaAeronaves = new HashMap<>();
+        //vincula aeronave com ocrrencia
+        for (Aeronave aeronave : aeronaves) {
+            List<Aeronave> aeronavesDaOcorrencia = mapOcorrenciaAeronaves.get(aeronave.getCodigoOcorrencia());
+
+            if (aeronavesDaOcorrencia == null) {
+                aeronavesDaOcorrencia = new ArrayList<>();
+                aeronavesDaOcorrencia.add(aeronave);
+            }
+
+            mapOcorrenciaAeronaves.put(aeronave.getCodigoOcorrencia(), aeronavesDaOcorrencia);
+        }
+
+        for (Ocorrencia ocorrencia : ocorrencias) {
+            ocorrencia.setAeronavesEnvolvidas(mapOcorrenciaAeronaves.get(ocorrencia.getCodigoOcorrencia()));
+
+        }
+
     }
 
     private List<OcorrenciaDTO> criarOcorrenciaDTOs() {
