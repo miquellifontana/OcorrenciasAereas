@@ -1,0 +1,43 @@
+package ocorrenciasaereas;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import ocorrenciasaereas.dados.GerenciadorAeronaves;
+import ocorrenciasaereas.dados.GerenciadorOcorrencias;
+
+/**
+ * Classe que controla a Lógica de Negócios
+ */
+public class Ocorrencias {
+
+    private List<Aeronave> aeronaves;
+
+    private List<Ocorrencia> ocorrencias;
+
+    public List<OcorrenciaDTO> obtemDadosParaExibicao() {
+        GerenciadorAeronaves gerenciadorDeAeronaves = new GerenciadorAeronaves();
+        GerenciadorOcorrencias gerenciadorDeOcorrencias = new GerenciadorOcorrencias();
+
+        gerenciadorDeOcorrencias.carregaConteudo(
+                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/ocorrencia.csv");
+        gerenciadorDeAeronaves.carregaConteudo(
+                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/aeronave.csv");
+
+        aeronaves = gerenciadorDeAeronaves.getAeronaves();
+        ocorrencias = gerenciadorDeOcorrencias.getOcorrencia();
+
+        vincularAeronavesComOcorrencias();
+
+        List<OcorrenciaDTO> ocorrenciaDTOs = criarOcorrenciaDTOs();
+
+        return ocorrenciaDTOs;
+    }
+
+    private void vincularAeronavesComOcorrencias() {
+    }
+
+    private List<OcorrenciaDTO> criarOcorrenciaDTOs() {
+    }
+}
