@@ -57,5 +57,12 @@ public class Ocorrencias {
     }
 
     private List<OcorrenciaDTO> criarOcorrenciaDTOs() {
+        List<OcorrenciaDTO> ocorrenciaDTOs = new ArrayList<>();
+        for (Ocorrencia ocorrencia : ocorrencias) {
+            OcorrenciaDTO ocorrenciaDTO = new OcorrenciaDTO(ocorrencia);
+            ocorrenciaDTOs.add(ocorrenciaDTO);
+        }
+
+        return ocorrenciaDTOs;
     }
 }
