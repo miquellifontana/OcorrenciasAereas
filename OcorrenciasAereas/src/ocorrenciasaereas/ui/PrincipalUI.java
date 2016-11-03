@@ -2,16 +2,18 @@ package ocorrenciasaereas.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import ocorrenciasaereas.OcorrenciaDTO;
-import ocorrenciasaereas.dados.GerenciadorAeronaves;
-import ocorrenciasaereas.dados.GerenciadorOcorrencias;
+import ocorrenciasaereas.Ocorrencias;
 
 /**
  * Interface Gráfica Principal.
  */
 public class PrincipalUI extends javax.swing.JFrame {
 
-    List<OcorrenciaDTO> ocorrenciaDTOs;
+    private List<OcorrenciaDTO> ocorrenciaDTOs;
+
+    private Ocorrencias ocorrencias;
 
     /**
      * Creates new form PrincipalUI
@@ -23,9 +25,31 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private void init() {
         ocorrenciaDTOs = new ArrayList<>();
+        ocorrencias = new Ocorrencias();
         setLocationRelativeTo(null);
-        
+
+        fillTable();
         setVisible(true);
+    }
+
+    private void atualizar() {
+        ocorrenciaDTOs = ocorrencias.obtemDadosParaExibicao();
+        fillTable();
+    }
+
+    private void fillTable() {
+        String columnNames[] = new String[]{
+            "Código", "Classificação", "Tipo", "Localidade", "UF", "Data", "Fatalidades"
+        };
+
+        Object[][] tableRows = new Object[this.ocorrenciaDTOs.size()][columnNames.length];
+
+        for (int i = 0; i < tableRows.length; i++) {
+//            tableRows[i] = ocorrenciaDTOs.get(i).atributosToArray();
+//TODO: Descomentar trecho quando o método atributosToArray for implementado na Task #662
+
+        }
+        tableOcorrencia.setModel(new DefaultTableModel(tableRows, columnNames));
     }
 
     /**
@@ -148,14 +172,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_menuSairMenuSelected
 
     private void buttonAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAtualizarMouseClicked
-            GerenciadorAeronaves gerenciadorDeAeronaves = new GerenciadorAeronaves();
-            GerenciadorOcorrencias gerenciadorDeOcorrencias = new GerenciadorOcorrencias();
-
-            gerenciadorDeOcorrencias.carregaConteudo(
-                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/ocorrencia.csv");
-            gerenciadorDeAeronaves.carregaConteudo(
-                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/aeronave.csv");
-        
+        atualizar();
     }//GEN-LAST:event_buttonAtualizarMouseClicked
 
     /**
