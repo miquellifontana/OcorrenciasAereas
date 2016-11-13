@@ -7,6 +7,7 @@
  - Guilherme Nunes Ferreira | email: guiferreira1996@gmail.com  | GitHub: https://github.com/gnunesferreira
  - Gustavo Campos Silva     | email: gucamposcs@gmail.com       | GitHub: https://github.com/gucamposcs
  - Miquelli Rigo Fontana    | email: miquellirfontana@gmail.com | GitHub: https://github.com/miquellifontana
+ - Felipe Ferreira da Silva | email: felipe.ferreira7@hotmail.com | GitHub: https://github.com/felipe-ferreira7
  
 #### Motivação
  - Exibir informações sobre os acidentes e incidentes graves ocorridos na Aviação civil brasileira.
