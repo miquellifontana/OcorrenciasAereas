@@ -1,5 +1,6 @@
 package ocorrenciasaereas.ui;
 
+import java.awt.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -44,12 +45,17 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         Object[][] tableRows = new Object[this.ocorrenciaDTOs.size()][columnNames.length];
 
+        
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR)); // **CURSOR DE ESPERA
+        
+        
         for (int i = 0; i < tableRows.length; i++) {
-//            tableRows[i] = ocorrenciaDTOs.get(i).atributosToArray();
-//TODO: Descomentar trecho quando o método atributosToArray for implementado na Task #662
-
+            tableRows[i] = ocorrenciaDTOs.get(i).atributosToArray();
         }
         tableOcorrencia.setModel(new DefaultTableModel(tableRows, columnNames));
+    
+       
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // **CURSOR DEFAULT
     }
 
     /**
