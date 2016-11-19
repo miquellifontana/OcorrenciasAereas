@@ -16,6 +16,13 @@ public class Ocorrencias {
 
     private List<Ocorrencia> ocorrencias;
 
+    /**
+     * Carrega o conteúdo de Ocorrências e Aeronaves da URL.
+     *
+     * Processa os dados obtidos para serem exibidos.
+     *
+     * @return Lista com os dados das ocorrências processados para exibição
+     */
     public List<OcorrenciaDTO> obtemDadosParaExibicao() {
         GerenciadorAeronaves gerenciadorDeAeronaves = new GerenciadorAeronaves();
         GerenciadorOcorrencias gerenciadorDeOcorrencias = new GerenciadorOcorrencias();
@@ -64,5 +71,51 @@ public class Ocorrencias {
         }
 
         return ocorrenciaDTOs;
+    }
+
+    /**
+     * Filtra a Quantidade de Fatalidades das OcorrenciasDTO's informadas.
+     *
+     * @param ocorrenciasDTO lista de Ocorrencias a serem filtradas
+     * @param valorFiltrar falor a ser filtrado 
+     * @param tipoComparacao tipo de comparação a ser feita: 0: =, 1: >, 2: <
+     *
+     * @return lista com os elementos filtrados
+     */
+    public List<OcorrenciaDTO> filtrarQuantidadeFatalidades(List<OcorrenciaDTO> ocorrenciasDTO,
+            Integer valorFiltrar, int tipoComparacao) {
+        List<OcorrenciaDTO> ocorrenciasFiltradas = new ArrayList<>();
+
+        for (OcorrenciaDTO ocorrenciaDTO : ocorrenciasDTO) {
+            boolean filtrarRegistro = false;
+            switch (tipoComparacao) {
+                case 0:
+                    if (ocorrenciaDTO.getQuantidadeFatalidades().equals(valorFiltrar)) {
+                        filtrarRegistro = true;
+                    }
+                    break;
+                case 1:
+                    if (ocorrenciaDTO.getQuantidadeFatalidades().compareTo(valorFiltrar) > 0) {
+                        filtrarRegistro = true;
+                    }
+                    break;
+                case 2:
+                    if (ocorrenciaDTO.getQuantidadeFatalidades().compareTo(valorFiltrar) < 0) {
+                        filtrarRegistro = true;
+                    }
+                    break;
+                default:
+                    if (ocorrenciaDTO.getQuantidadeFatalidades().equals(valorFiltrar)) {
+                        filtrarRegistro = true;
+                    }
+                    break;
+            }
+
+            if (filtrarRegistro) {
+                ocorrenciasFiltradas.add(ocorrenciaDTO);
+            }
+        }
+
+        return ocorrenciasFiltradas;
     }
 }
