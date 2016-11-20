@@ -1,9 +1,14 @@
 package ocorrenciasaereas;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ocorrenciasaereas.dados.GerenciadorAeronaves;
 import ocorrenciasaereas.dados.GerenciadorOcorrencias;
 
@@ -128,6 +133,42 @@ public class Ocorrencias {
             }
         }
         System.err.println("FiltrandoQuantidadeFatalidades");
+        return ocorrenciasFiltradas;
+    }
+
+    public List<OcorrenciaDTO> filtrarDataOcorrencia(List<OcorrenciaDTO> ocorrenciasDTOs, Date dataInicial, Date dataFinal) {
+        List<OcorrenciaDTO> ocorrenciasFiltradas = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            for (OcorrenciaDTO ocorrenciaDTO : ocorrenciasDTOs) {
+                boolean filtrarOcorrencia = false;
+                boolean filtrarDataInicial = false;
+                boolean filtrarDataFinal = false;
+                Date dataOcorrencia = dateFormat.parse(ocorrenciaDTO.getDataOcorrencia());
+                System.err.println("-----------------------------");
+                System.err.println("ocorrencia: " + ocorrenciaDTO);
+                if (dataInicial != null) {
+                    filtrarDataInicial = dataInicial.compareTo(dataOcorrencia) <= 0;
+                }
+
+                if (dataFinal != null) {
+                    filtrarDataFinal = dataFinal.compareTo(dataOcorrencia) >= 0;
+                }
+
+                filtrarOcorrencia = (dataInicial == null && filtrarDataFinal)
+                        || (dataFinal == null && filtrarDataInicial)
+                        || (filtrarDataFinal && filtrarDataInicial);
+
+                if (filtrarOcorrencia) {
+                    ocorrenciasFiltradas.add(ocorrenciaDTO);
+                }
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Ocorrencias.class.getName()).log(Level.SEVERE, null, ex);
+            return ocorrenciasDTOs;
+        }
+
         return ocorrenciasFiltradas;
     }
 }

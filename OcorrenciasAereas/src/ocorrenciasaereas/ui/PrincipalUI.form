@@ -120,27 +120,37 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="labelFiltroData" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="labelFiltros" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                           <Component id="labelFiltroCodigo" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="labelFiltroQuantidadeFatalidades" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="labelFiltroQuantidadeFatalidades" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="comboComparacaoQtdFatalidades" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="filtroQuantidadeFatalidades" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="comboComparacaoQtdFatalidades" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="filtroQuantidadeFatalidades" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="filtroCodigo" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="530" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="filtroCodigo" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="filtroDataInicial" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelFiltroDataFinal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="filtroDataFinal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="530" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -161,14 +171,19 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelFiltroQuantidadeFatalidades" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="filtroQuantidadeFatalidades" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboComparacaoQtdFatalidades" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="filtroQuantidadeFatalidades" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboComparacaoQtdFatalidades" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelFiltroQuantidadeFatalidades" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelFiltroData" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="filtroDataInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelFiltroDataFinal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="filtroDataFinal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -216,6 +231,32 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(numberFormatter)"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelFiltroData">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Data"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="filtroDataInicial">
+          <Properties>
+            <Property name="columns" type="int" value="10"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(dateFormatter)"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelFiltroDataFinal">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="at&#xe9;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="filtroDataFinal">
+          <Properties>
+            <Property name="columns" type="int" value="10"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(dateFormatter)"/>
           </AuxValues>
         </Component>
       </SubComponents>
