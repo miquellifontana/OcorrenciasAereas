@@ -171,4 +171,15 @@ public class Ocorrencias {
 
         return ocorrenciasFiltradas;
     }
+
+    public List<OcorrenciaDTO> filtrarTipoOcorrencia(List<OcorrenciaDTO> ocorrenciasDTOs, String tipo) {
+        List<OcorrenciaDTO> ocorrenciasFiltradas = new ArrayList<>();
+
+        for (OcorrenciaDTO ocorrenciaDTO : ocorrenciasDTOs) {
+            if (ocorrenciaDTO.getTipo() != null && ocorrenciaDTO.getTipo().toUpperCase().contains(tipo.toUpperCase())) {
+                ocorrenciasFiltradas.add(ocorrenciaDTO);
+            }
+        }
+        return ocorrenciasFiltradas;
+    }
 }

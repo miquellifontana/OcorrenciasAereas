@@ -77,7 +77,6 @@ public class PrincipalUI extends javax.swing.JFrame {
         ocorrenciaDTOs = ocorrencias.obtemDadosParaExibicao();
         filtrarOcorrencias();
         fillTable();
-
     }
 
     private void filtrarOcorrencias() {
@@ -87,6 +86,7 @@ public class PrincipalUI extends javax.swing.JFrame {
                     Integer.valueOf(filtroCodigo.getValue().toString()));
         }
 
+        // Filtro Data
         if (filtroDataFinal.getValue() != null || filtroDataInicial.getValue() != null) {
             ocorrenciaDTOs = ocorrencias.filtrarDataOcorrencia(
                     ocorrenciaDTOs, (Date) filtroDataInicial.getValue(), (Date) filtroDataFinal.getValue());
@@ -96,6 +96,11 @@ public class PrincipalUI extends javax.swing.JFrame {
             ocorrenciaDTOs = ocorrencias.filtrarQuantidadeFatalidades(
                     ocorrenciaDTOs, (Integer) filtroQuantidadeFatalidades.getValue(),
                     comboComparacaoQtdFatalidades.getSelectedIndex());
+        }
+
+        // Filtro de Tipo de Ocorrencia
+        if (filtroTipoOcorrencia.getText() != null && !filtroTipoOcorrencia.getText().trim().equals("")) {
+            ocorrenciaDTOs = ocorrencias.filtrarTipoOcorrencia(ocorrenciaDTOs, filtroTipoOcorrencia.getText());
         }
     }
 
@@ -139,6 +144,8 @@ public class PrincipalUI extends javax.swing.JFrame {
         filtroDataInicial = new javax.swing.JFormattedTextField(dateFormatter);
         labelFiltroDataFinal = new javax.swing.JLabel();
         filtroDataFinal = new javax.swing.JFormattedTextField(dateFormatter);
+        labelFiltroTipo = new javax.swing.JLabel();
+        filtroTipoOcorrencia = new javax.swing.JTextField();
         buttonAtualizar = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuConfiguracoes = new javax.swing.JMenu();
@@ -185,12 +192,17 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         filtroDataFinal.setColumns(10);
 
+        labelFiltroTipo.setText("Tipo");
+
+        filtroTipoOcorrencia.setColumns(10);
+
         javax.swing.GroupLayout panelFiltrosLayout = new javax.swing.GroupLayout(panelFiltros);
         panelFiltros.setLayout(panelFiltrosLayout);
         panelFiltrosLayout.setHorizontalGroup(
             panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFiltrosLayout.createSequentialGroup()
                 .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelFiltroTipo)
                     .addComponent(labelFiltroData)
                     .addGroup(panelFiltrosLayout.createSequentialGroup()
                         .addComponent(labelFiltros)
@@ -208,12 +220,15 @@ public class PrincipalUI extends javax.swing.JFrame {
                             .addComponent(filtroCodigo))
                         .addGap(530, 530, 530))
                     .addGroup(panelFiltrosLayout.createSequentialGroup()
-                        .addComponent(filtroDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelFiltroDataFinal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(filtroDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(filtroTipoOcorrencia, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFiltrosLayout.createSequentialGroup()
+                                .addComponent(filtroDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelFiltroDataFinal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(filtroDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(368, 368, 368))))
         );
         panelFiltrosLayout.setVerticalGroup(
             panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +253,11 @@ public class PrincipalUI extends javax.swing.JFrame {
                     .addComponent(filtroDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelFiltroDataFinal)
                     .addComponent(filtroDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filtroTipoOcorrencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFiltroTipo))
+                .addContainerGap())
         );
 
         buttonAtualizar.setText("Atualizar");
@@ -288,11 +307,11 @@ public class PrincipalUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonAtualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneOcorrencia, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneOcorrencia, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -353,11 +372,13 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField filtroDataFinal;
     private javax.swing.JFormattedTextField filtroDataInicial;
     private javax.swing.JFormattedTextField filtroQuantidadeFatalidades;
+    private javax.swing.JTextField filtroTipoOcorrencia;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel labelFiltroCodigo;
     private javax.swing.JLabel labelFiltroData;
     private javax.swing.JLabel labelFiltroDataFinal;
     private javax.swing.JLabel labelFiltroQuantidadeFatalidades;
+    private javax.swing.JLabel labelFiltroTipo;
     private javax.swing.JLabel labelFiltros;
     private javax.swing.JMenuBar menuBarPrincipal;
     private javax.swing.JMenu menuConfiguracoes;
