@@ -73,23 +73,11 @@ public class Ocorrencias {
         return ocorrenciaDTOs;
     }
 
-    public List<OcorrenciaDTO> filtrarCodigoOcorrencia(List<OcorrenciaDTO> ocorrenciasDTO, int valor) {
-        List<OcorrenciaDTO> ocorrenciasFiltradas = new ArrayList<>();
-
-        for (OcorrenciaDTO ocorrenciaDTO : ocorrenciasDTO) {
-            if (valor == ocorrenciaDTO.getCodigoOcorrencia()) {
-                ocorrenciasFiltradas.add(ocorrenciaDTO);
-            }
-        }
-        System.err.println("FiltrandoCodigo");
-        return ocorrenciasFiltradas;
-    }
-
     /**
      * Filtra a Quantidade de Fatalidades das OcorrenciasDTO's informadas.
      *
      * @param ocorrenciasDTO lista de Ocorrencias a serem filtradas
-     * @param valorFiltrar falor a ser filtrado
+     * @param valorFiltrar falor a ser filtrado 
      * @param tipoComparacao tipo de comparação a ser feita: 0: =, 1: >, 2: <
      *
      * @return lista com os elementos filtrados
@@ -127,7 +115,7 @@ public class Ocorrencias {
                 ocorrenciasFiltradas.add(ocorrenciaDTO);
             }
         }
-        System.err.println("FiltrandoQuantidadeFatalidades");
+
         return ocorrenciasFiltradas;
     }
 }
