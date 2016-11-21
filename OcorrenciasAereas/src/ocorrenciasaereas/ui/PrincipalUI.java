@@ -10,8 +10,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.NumberFormatter;
-import ocorrenciasaereas.OcorrenciaDTO;
-import ocorrenciasaereas.Ocorrencias;
+import ocorrenciasaereas.OcorrenciasAereas;
 
 /**
  * Interface Gráfica Principal.
@@ -20,7 +19,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private List<OcorrenciaDTO> ocorrenciaDTOs;
 
-    private Ocorrencias ocorrencias;
+    private OcorrenciasAereas ocorrenciasAereas;
 
     /**
      * NumberFormatter para ser utilizado em campos numéricos.
@@ -56,7 +55,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private void init() {
         ocorrenciaDTOs = new ArrayList<>();
-        ocorrencias = new Ocorrencias();
+        ocorrenciasAereas = new OcorrenciasAereas();
         setLocationRelativeTo(null);
 
         comboComparacaoQtdFatalidades.addItem("=");
@@ -74,7 +73,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
 
     private void atualizar() {
-        ocorrenciaDTOs = ocorrencias.obtemDadosParaExibicao();
+        ocorrenciaDTOs = ocorrenciasAereas.obtemDadosParaExibicao();
         filtrarOcorrencias();
         fillTable();
     }
@@ -82,25 +81,25 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void filtrarOcorrencias() {
         // Filtro Código Ocorrencia
         if (filtroCodigo.getText() != null && !filtroCodigo.getText().trim().equals("")) {
-            ocorrenciaDTOs = ocorrencias.filtrarCodigoOcorrencia(ocorrenciaDTOs,
+            ocorrenciaDTOs = ocorrenciasAereas.filtrarCodigoOcorrencia(ocorrenciaDTOs,
                     Integer.valueOf(filtroCodigo.getValue().toString()));
         }
 
         // Filtro Data
         if (filtroDataFinal.getValue() != null || filtroDataInicial.getValue() != null) {
-            ocorrenciaDTOs = ocorrencias.filtrarDataOcorrencia(
+            ocorrenciaDTOs = ocorrenciasAereas.filtrarDataOcorrencia(
                     ocorrenciaDTOs, (Date) filtroDataInicial.getValue(), (Date) filtroDataFinal.getValue());
         }
         // Filtro de Quantidade de fatalidades
         if (filtroQuantidadeFatalidades.getValue() != null) {
-            ocorrenciaDTOs = ocorrencias.filtrarQuantidadeFatalidades(
+            ocorrenciaDTOs = ocorrenciasAereas.filtrarQuantidadeFatalidades(
                     ocorrenciaDTOs, (Integer) filtroQuantidadeFatalidades.getValue(),
                     comboComparacaoQtdFatalidades.getSelectedIndex());
         }
 
         // Filtro de Tipo de Ocorrencia
         if (filtroTipoOcorrencia.getText() != null && !filtroTipoOcorrencia.getText().trim().equals("")) {
-            ocorrenciaDTOs = ocorrencias.filtrarTipoOcorrencia(ocorrenciaDTOs, filtroTipoOcorrencia.getText());
+            ocorrenciaDTOs = ocorrenciasAereas.filtrarTipoOcorrencia(ocorrenciaDTOs, filtroTipoOcorrencia.getText());
         }
     }
 

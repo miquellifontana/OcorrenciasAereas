@@ -1,12 +1,10 @@
-package ocorrenciasaereas;
+package ocorrenciasaereas.dados;
 
 import java.util.Date;
+import ocorrenciasaereas.Utilities;
 
 /**
  * Classe que representa um registro do arquivo aeronave.txt.
- *
- * TODO: Verificar como tratar os campos que no arquivo são String mas
- * possivelmente se comportarão como Boolean
  */
 public class Aeronave {
 

@@ -1,6 +1,8 @@
-package ocorrenciasaereas;
+package ocorrenciasaereas.ui;
 
 import java.text.SimpleDateFormat;
+import ocorrenciasaereas.dados.Aeronave;
+import ocorrenciasaereas.dados.Ocorrencia;
 
 /**
  * Classe que representa o modelo para exibição em tela.

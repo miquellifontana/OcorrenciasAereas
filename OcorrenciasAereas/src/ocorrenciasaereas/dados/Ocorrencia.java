@@ -1,14 +1,12 @@
-package ocorrenciasaereas;
+package ocorrenciasaereas.dados;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import ocorrenciasaereas.Utilities;
 
 /**
  * Classe que representa um registro do arquivo ocorrencia.txt.
- *
- * TODO: Verificar como tratar os campos que no arquivo são String mas
- * possivelmente se comportarão como Boolean
  */
 public class Ocorrencia {
 
