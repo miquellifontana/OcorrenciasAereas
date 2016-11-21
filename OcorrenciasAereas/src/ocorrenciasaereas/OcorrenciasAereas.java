@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ocorrenciasaereas.ui.PrincipalUI;
@@ -191,5 +193,29 @@ public class OcorrenciasAereas {
             }
         }
         return ocorrenciasFiltradas;
+    }
+
+    /**
+     * Retorna um mapa contendo a quantidade de ocorrências registradas por ano.
+     *
+     * @param ocorrenciasFiltradas ocorrências consideradas.
+     * @return um SortedMap contendo a quantidade de ocorrências registradas por
+     * ano.
+     */
+    public SortedMap<Integer, Integer> getOcorrenciasPorAno(List<OcorrenciaDTO> ocorrenciasFiltradas) {
+        SortedMap<Integer, Integer> mapOcorrenciasPorAno = new TreeMap<>();
+
+        for (OcorrenciaDTO ocorrencia : ocorrenciasFiltradas) {
+            Integer ano = Integer.valueOf(ocorrencia.getDataOcorrencia().substring(6, 10));
+
+            Integer ocorrenciasPorAno = mapOcorrenciasPorAno.get(ano);
+            if (ocorrenciasPorAno == null) {
+                mapOcorrenciasPorAno.put(ano, 1);
+            } else {
+                mapOcorrenciasPorAno.put(ano, ocorrenciasPorAno + 1);
+            }
+        }
+
+        return mapOcorrenciasPorAno;
     }
 }

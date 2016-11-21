@@ -7,6 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.SortedMap;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.NumberFormatter;
@@ -54,8 +59,8 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
 
     private void init() {
-        ocorrenciaDTOs = new ArrayList<>();
         ocorrenciasAereas = new OcorrenciasAereas();
+        ocorrenciaDTOs = new ArrayList<>();
         setLocationRelativeTo(null);
 
         comboComparacaoQtdFatalidades.addItem("=");
@@ -120,6 +125,31 @@ public class PrincipalUI extends javax.swing.JFrame {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // **CURSOR DEFAULT
     }
 
+    private void plotarGraficoOcorrenciasPorAno() {
+        atualizar();
+        SortedMap<Integer, Integer> ocorrenciasPorAno = ocorrenciasAereas.getOcorrenciasPorAno(ocorrenciaDTOs);
+
+        GraficoLinha graficoLinha = new GraficoLinha(ocorrenciasPorAno);
+
+        graficoLinha.setEixoXLabel("Ano");
+        graficoLinha.setEixoYLabel("Quantidade Ocorrências");
+        graficoLinha.setTitulo("Quantidade de Ocorrências Aéreas Registradas no Brasil");
+        graficoLinha.setNomeSerie("Ocorrências");
+
+        JDialog janPl = new JDialog();
+        JFXPanel fxPanel = new JFXPanel();
+        janPl.add(fxPanel);
+        janPl.setSize(1200, 720);
+        janPl.setVisible(true);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                fxPanel.setScene(new Scene(graficoLinha.criarLineChart(), 1200, 720));
+            }
+        });
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,6 +176,8 @@ public class PrincipalUI extends javax.swing.JFrame {
         labelFiltroTipo = new javax.swing.JLabel();
         filtroTipoOcorrencia = new javax.swing.JTextField();
         buttonAtualizar = new javax.swing.JButton();
+        buttonPlotarGraficoOcorrencias = new javax.swing.JButton();
+        buttonPlotarGraficoFatalidades = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuConfiguracoes = new javax.swing.JMenu();
         menuURLS = new javax.swing.JMenuItem();
@@ -259,10 +291,24 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        buttonAtualizar.setText("Atualizar");
+        buttonAtualizar.setText("Atualizar Tabela");
         buttonAtualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonAtualizarMouseClicked(evt);
+            }
+        });
+
+        buttonPlotarGraficoOcorrencias.setText("Gráfico Ocorrencias Por Ano");
+        buttonPlotarGraficoOcorrencias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonPlotarGraficoOcorrenciasOcorrenciasMouseClicked(evt);
+            }
+        });
+
+        buttonPlotarGraficoFatalidades.setText("Gráfico Fatalidades Por Ano");
+        buttonPlotarGraficoFatalidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonPlotarGraficoFatalidadesMouseClicked(evt);
             }
         });
 
@@ -297,18 +343,24 @@ public class PrincipalUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(scrollPaneOcorrencia)
                         .addGap(12, 12, 12))
-                    .addComponent(panelFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(panelFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(buttonPlotarGraficoOcorrencias, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonPlotarGraficoFatalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAtualizar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonAtualizar)
+                    .addComponent(buttonPlotarGraficoOcorrencias)
+                    .addComponent(buttonPlotarGraficoFatalidades))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollPaneOcorrencia, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addContainerGap())
@@ -328,6 +380,14 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void filtroCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filtroCodigoActionPerformed
+
+    private void buttonPlotarGraficoOcorrenciasOcorrenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPlotarGraficoOcorrenciasOcorrenciasMouseClicked
+        plotarGraficoOcorrenciasPorAno();
+    }//GEN-LAST:event_buttonPlotarGraficoOcorrenciasOcorrenciasMouseClicked
+
+    private void buttonPlotarGraficoFatalidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPlotarGraficoFatalidadesMouseClicked
+
+    }//GEN-LAST:event_buttonPlotarGraficoFatalidadesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -366,6 +426,8 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAtualizar;
+    private javax.swing.JButton buttonPlotarGraficoFatalidades;
+    private javax.swing.JButton buttonPlotarGraficoOcorrencias;
     private javax.swing.JComboBox<String> comboComparacaoQtdFatalidades;
     private javax.swing.JFormattedTextField filtroCodigo;
     private javax.swing.JFormattedTextField filtroDataFinal;
