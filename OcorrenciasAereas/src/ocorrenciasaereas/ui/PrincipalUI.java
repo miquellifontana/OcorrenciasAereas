@@ -27,7 +27,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private OcorrenciasAereas ocorrenciasAereas;
 
-    private static ResourceBundle bundle = ResourceBundle.getBundle("Resources.ui");
+    private ResourceBundle bundle;
 
     /**
      * NumberFormatter para ser utilizado em campos numéricos.
@@ -62,6 +62,8 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
 
     private void init() {
+        bundle = OcorrenciasAereas.bundle;
+
         ocorrenciasAereas = new OcorrenciasAereas();
         ocorrenciaDTOs = new ArrayList<>();
         setLocationRelativeTo(null);
@@ -74,10 +76,27 @@ public class PrincipalUI extends javax.swing.JFrame {
         numberFormatter.setAllowsInvalid(false);
 
         dateFormatter.setValueClass(Date.class);
+        preencherUIComProperties();
 
         fillTable();
         setVisible(true);
 
+    }
+
+    private void preencherUIComProperties() {
+        menuConfiguracoes.setText(bundle.getString("PrincipalUI.menuConfiguracoes"));
+        menuSair.setText(bundle.getString("PrincipalUI.menuSair"));
+
+        labelFiltros.setText(bundle.getString("PrincipalUI.labelFiltros"));
+        labelFiltroCodigo.setText(bundle.getString("PrincipalUI.labelFiltroCodigo"));
+        labelFiltroQuantidadeFatalidades.setText(bundle.getString("PrincipalUI.labelFiltroQuantidadeFatalidades"));
+        labelFiltroData.setText(bundle.getString("PrincipalUI.labelFiltroData"));
+        labelFiltroDataFinal.setText(bundle.getString("PrincipalUI.labelFiltroDataFinal"));
+        labelFiltroTipo.setText(bundle.getString("PrincipalUI.labelFiltroTipo"));
+
+        buttonAtualizar.setText(bundle.getString("PrincipalUI.buttonAtualizar"));
+        buttonPlotarGraficoFatalidades.setText(bundle.getString("PrincipalUI.buttonPlotarGraficoFatalidades"));
+        buttonPlotarGraficoOcorrencias.setText(bundle.getString("PrincipalUI.buttonPlotarGraficoOcorrencias"));
     }
 
     private void atualizar() {
@@ -113,7 +132,10 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private void fillTable() {
         String columnNames[] = new String[]{
-            "Código", "Classificação", "Tipo", "Localidade", "UF", "Data", "Fatalidades"
+            bundle.getString("tabelaOcorrencia.codigo"), bundle.getString("tabelaOcorrencia.classificacao"),
+            bundle.getString("tabelaOcorrencia.tipo"), bundle.getString("tabelaOcorrencia.localidade"),
+            bundle.getString("tabelaOcorrencia.UF"), bundle.getString("tabelaOcorrencia.data"),
+            bundle.getString("tabelaOcorrencia.fatalidades")
         };
 
         Object[][] tableRows = new Object[this.ocorrenciaDTOs.size()][columnNames.length];
@@ -134,10 +156,10 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         GraficoLinha graficoLinha = new GraficoLinha(ocorrenciasPorAno);
 
-        graficoLinha.setEixoXLabel("Ano");
-        graficoLinha.setEixoYLabel("Quantidade Ocorrências");
-        graficoLinha.setTitulo("Quantidade de Ocorrências Aéreas Registradas no Brasil");
-        graficoLinha.setNomeSerie("Ocorrências");
+        graficoLinha.setEixoXLabel(bundle.getString("graficoOcorrenciasPorAno.eixoxLabel"));
+        graficoLinha.setEixoYLabel(bundle.getString("graficoOcorrenciasPorAno.eixoyLabel"));
+        graficoLinha.setTitulo(bundle.getString("graficoOcorrenciasPorAno.titulo"));
+        graficoLinha.setNomeSerie(bundle.getString("graficoOcorrenciasPorAno.nomeSerie"));
 
         JDialog janPl = new JDialog();
         JFXPanel fxPanel = new JFXPanel();
@@ -159,10 +181,10 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         GraficoLinha graficoLinha = new GraficoLinha(fatalidadesPorAno);
 
-        graficoLinha.setEixoXLabel("Ano");
-        graficoLinha.setEixoYLabel("Quantidade de Fatalidades");
-        graficoLinha.setTitulo("Quantidade de Fatalidades Registradas em Ocorrências Aéreas no Brasil");
-        graficoLinha.setNomeSerie("Fatalidades");
+        graficoLinha.setEixoXLabel(bundle.getString("graficoFatalidadesPorAno.eixoxLabel"));
+        graficoLinha.setEixoYLabel(bundle.getString("graficoFatalidadesPorAno.eixoyLabel"));
+        graficoLinha.setTitulo(bundle.getString("graficoFatalidadesPorAno.titulo"));
+        graficoLinha.setNomeSerie(bundle.getString("graficoFatalidadesPorAno.nomeSerie"));
 
         JDialog janPl = new JDialog();
         JFXPanel fxPanel = new JFXPanel();
@@ -319,21 +341,21 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        buttonAtualizar.setText("Atualizar Tabela");
+        buttonAtualizar.setText("buttonAtualizar");
         buttonAtualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonAtualizarMouseClicked(evt);
             }
         });
 
-        buttonPlotarGraficoOcorrencias.setText("Gráfico Ocorrencias Por Ano");
+        buttonPlotarGraficoOcorrencias.setText("buttonGraficoOcorrencias");
         buttonPlotarGraficoOcorrencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonPlotarGraficoOcorrenciasOcorrenciasMouseClicked(evt);
             }
         });
 
-        buttonPlotarGraficoFatalidades.setText("Gráfico Fatalidades Por Ano");
+        buttonPlotarGraficoFatalidades.setText("buttonGraficoFatalidades");
         buttonPlotarGraficoFatalidades.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonPlotarGraficoFatalidadesMouseClicked(evt);

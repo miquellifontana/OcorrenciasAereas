@@ -291,7 +291,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="buttonAtualizar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Atualizar Tabela"/>
+        <Property name="text" type="java.lang.String" value="buttonAtualizar"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonAtualizarMouseClicked"/>
@@ -299,7 +299,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonPlotarGraficoOcorrencias">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gr&#xe1;fico Ocorrencias Por Ano"/>
+        <Property name="text" type="java.lang.String" value="buttonGraficoOcorrencias"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonPlotarGraficoOcorrenciasOcorrenciasMouseClicked"/>
@@ -307,7 +307,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonPlotarGraficoFatalidades">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gr&#xe1;fico Fatalidades Por Ano"/>
+        <Property name="text" type="java.lang.String" value="buttonGraficoFatalidades"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonPlotarGraficoFatalidadesMouseClicked"/>

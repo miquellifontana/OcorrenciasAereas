@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.logging.Level;
@@ -22,9 +23,11 @@ import ocorrenciasaereas.dados.GerenciadorOcorrencias;
  * Classe que Controla a lógica da Aplicação.
  */
 public class OcorrenciasAereas {
-
+    
+    public static final ResourceBundle bundle = ResourceBundle.getBundle("Resources.ui");
+    
     private List<Aeronave> aeronaves;
-
+    
     private List<Ocorrencia> ocorrencias;
 
     /**
@@ -44,62 +47,60 @@ public class OcorrenciasAereas {
     public List<OcorrenciaDTO> obtemDadosParaExibicao() {
         GerenciadorAeronaves gerenciadorDeAeronaves = new GerenciadorAeronaves();
         GerenciadorOcorrencias gerenciadorDeOcorrencias = new GerenciadorOcorrencias();
-
-        gerenciadorDeOcorrencias.carregaConteudo(
-                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/ocorrencia.csv");
-        gerenciadorDeAeronaves.carregaConteudo(
-                "http://www.cenipa.aer.mil.br/cenipa/Anexos/article/1451/aeronave.csv");
-
+        
+        gerenciadorDeOcorrencias.carregaConteudo(bundle.getString("Config.URL.ocorrencias"));
+        gerenciadorDeAeronaves.carregaConteudo(bundle.getString("Config.URL.aeronaves"));
+        
         aeronaves = gerenciadorDeAeronaves.getAeronaves();
         ocorrencias = gerenciadorDeOcorrencias.getOcorrencia();
-
+        
         vincularAeronavesComOcorrencias();
-
+        
         List<OcorrenciaDTO> ocorrenciaDTOs = criarOcorrenciaDTOs();
-
+        
         return ocorrenciaDTOs;
     }
-
+    
     private void vincularAeronavesComOcorrencias() {
         Map<Integer, List<Aeronave>> mapOcorrenciaAeronaves = new HashMap<>();
         //vincula aeronave com ocrrencia
         for (Aeronave aeronave : aeronaves) {
             List<Aeronave> aeronavesDaOcorrencia = mapOcorrenciaAeronaves.get(aeronave.getCodigoOcorrencia());
-
+            
             if (aeronavesDaOcorrencia == null) {
                 aeronavesDaOcorrencia = new ArrayList<>();
                 aeronavesDaOcorrencia.add(aeronave);
             }
-
+            
             mapOcorrenciaAeronaves.put(aeronave.getCodigoOcorrencia(), aeronavesDaOcorrencia);
         }
-
+        
         for (Ocorrencia ocorrencia : ocorrencias) {
             ocorrencia.setAeronavesEnvolvidas(mapOcorrenciaAeronaves.get(ocorrencia.getCodigoOcorrencia()));
-
+            
         }
-
+        
     }
-
+    
     private List<OcorrenciaDTO> criarOcorrenciaDTOs() {
         List<OcorrenciaDTO> ocorrenciaDTOs = new ArrayList<>();
         for (Ocorrencia ocorrencia : ocorrencias) {
             OcorrenciaDTO ocorrenciaDTO = new OcorrenciaDTO(ocorrencia);
             ocorrenciaDTOs.add(ocorrenciaDTO);
         }
-
+        
         return ocorrenciaDTOs;
     }
-
+    
     public List<OcorrenciaDTO> filtrarCodigoOcorrencia(List<OcorrenciaDTO> ocorrenciasDTOs, int valor) {
         List<OcorrenciaDTO> ocorrenciasFiltradas = new ArrayList<>();
-
+        
         for (OcorrenciaDTO ocorrenciaDTO : ocorrenciasDTOs) {
             if (valor == ocorrenciaDTO.getCodigoOcorrencia()) {
                 ocorrenciasFiltradas.add(ocorrenciaDTO);
             }
         }
-
+        
         return ocorrenciasFiltradas;
     }
 
@@ -115,7 +116,7 @@ public class OcorrenciasAereas {
     public List<OcorrenciaDTO> filtrarQuantidadeFatalidades(List<OcorrenciaDTO> ocorrenciasDTOs,
             Integer valorFiltrar, int tipoComparacao) {
         List<OcorrenciaDTO> ocorrenciasFiltradas = new ArrayList<>();
-
+        
         for (OcorrenciaDTO ocorrenciaDTO : ocorrenciasDTOs) {
             boolean filtrarRegistro = false;
             switch (tipoComparacao) {
@@ -140,38 +141,38 @@ public class OcorrenciasAereas {
                     }
                     break;
             }
-
+            
             if (filtrarRegistro) {
                 ocorrenciasFiltradas.add(ocorrenciaDTO);
             }
         }
-
+        
         return ocorrenciasFiltradas;
     }
-
+    
     public List<OcorrenciaDTO> filtrarDataOcorrencia(List<OcorrenciaDTO> ocorrenciasDTOs, Date dataInicial, Date dataFinal) {
         List<OcorrenciaDTO> ocorrenciasFiltradas = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
+        
         try {
             for (OcorrenciaDTO ocorrenciaDTO : ocorrenciasDTOs) {
                 boolean filtrarOcorrencia = false;
                 boolean filtrarDataInicial = false;
                 boolean filtrarDataFinal = false;
                 Date dataOcorrencia = dateFormat.parse(ocorrenciaDTO.getDataOcorrencia());
-
+                
                 if (dataInicial != null) {
                     filtrarDataInicial = dataInicial.compareTo(dataOcorrencia) <= 0;
                 }
-
+                
                 if (dataFinal != null) {
                     filtrarDataFinal = dataFinal.compareTo(dataOcorrencia) >= 0;
                 }
-
+                
                 filtrarOcorrencia = (dataInicial == null && filtrarDataFinal)
                         || (dataFinal == null && filtrarDataInicial)
                         || (filtrarDataFinal && filtrarDataInicial);
-
+                
                 if (filtrarOcorrencia) {
                     ocorrenciasFiltradas.add(ocorrenciaDTO);
                 }
@@ -180,13 +181,13 @@ public class OcorrenciasAereas {
             Logger.getLogger(OcorrenciasAereas.class.getName()).log(Level.SEVERE, null, ex);
             return ocorrenciasDTOs;
         }
-
+        
         return ocorrenciasFiltradas;
     }
-
+    
     public List<OcorrenciaDTO> filtrarTipoOcorrencia(List<OcorrenciaDTO> ocorrenciasDTOs, String tipo) {
         List<OcorrenciaDTO> ocorrenciasFiltradas = new ArrayList<>();
-
+        
         for (OcorrenciaDTO ocorrenciaDTO : ocorrenciasDTOs) {
             if (ocorrenciaDTO.getTipo() != null && ocorrenciaDTO.getTipo().toUpperCase().contains(tipo.toUpperCase())) {
                 ocorrenciasFiltradas.add(ocorrenciaDTO);
@@ -204,10 +205,10 @@ public class OcorrenciasAereas {
      */
     public SortedMap<Integer, Integer> getOcorrenciasPorAno(List<OcorrenciaDTO> ocorrenciasFiltradas) {
         SortedMap<Integer, Integer> mapOcorrenciasPorAno = new TreeMap<>();
-
+        
         for (OcorrenciaDTO ocorrencia : ocorrenciasFiltradas) {
             Integer ano = Integer.valueOf(ocorrencia.getDataOcorrencia().substring(6, 10));
-
+            
             Integer ocorrenciasPorAno = mapOcorrenciasPorAno.get(ano);
             if (ocorrenciasPorAno == null) {
                 mapOcorrenciasPorAno.put(ano, 1);
@@ -215,16 +216,16 @@ public class OcorrenciasAereas {
                 mapOcorrenciasPorAno.put(ano, ocorrenciasPorAno + 1);
             }
         }
-
+        
         return mapOcorrenciasPorAno;
     }
-
+    
     public SortedMap<Integer, Integer> getFatalidadesPorAno(List<OcorrenciaDTO> ocorrenciasFiltradas) {
         SortedMap<Integer, Integer> mapFatalidadesPorAno = new TreeMap<>();
-
+        
         for (OcorrenciaDTO ocorrencia : ocorrenciasFiltradas) {
             Integer ano = Integer.valueOf(ocorrencia.getDataOcorrencia().substring(6, 10));
-
+            
             Integer fatalidadesPorAno = mapFatalidadesPorAno.get(ano);
             if (fatalidadesPorAno == null) {
                 mapFatalidadesPorAno.put(ano, ocorrencia.getQuantidadeFatalidades());
@@ -232,7 +233,7 @@ public class OcorrenciasAereas {
                 mapFatalidadesPorAno.put(ano, fatalidadesPorAno + ocorrencia.getQuantidadeFatalidades());
             }
         }
-
+        
         return mapFatalidadesPorAno;
     }
 }
