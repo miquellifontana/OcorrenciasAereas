@@ -218,4 +218,21 @@ public class OcorrenciasAereas {
 
         return mapOcorrenciasPorAno;
     }
+
+    public SortedMap<Integer, Integer> getFatalidadesPorAno(List<OcorrenciaDTO> ocorrenciasFiltradas) {
+        SortedMap<Integer, Integer> mapFatalidadesPorAno = new TreeMap<>();
+
+        for (OcorrenciaDTO ocorrencia : ocorrenciasFiltradas) {
+            Integer ano = Integer.valueOf(ocorrencia.getDataOcorrencia().substring(6, 10));
+
+            Integer fatalidadesPorAno = mapFatalidadesPorAno.get(ano);
+            if (fatalidadesPorAno == null) {
+                mapFatalidadesPorAno.put(ano, ocorrencia.getQuantidadeFatalidades());
+            } else {
+                mapFatalidadesPorAno.put(ano, fatalidadesPorAno + ocorrencia.getQuantidadeFatalidades());
+            }
+        }
+
+        return mapFatalidadesPorAno;
+    }
 }

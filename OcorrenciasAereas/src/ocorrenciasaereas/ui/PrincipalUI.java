@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.SortedMap;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -25,6 +26,8 @@ public class PrincipalUI extends javax.swing.JFrame {
     private List<OcorrenciaDTO> ocorrenciaDTOs;
 
     private OcorrenciasAereas ocorrenciasAereas;
+
+    private static ResourceBundle bundle = ResourceBundle.getBundle("Resources.ui");
 
     /**
      * NumberFormatter para ser utilizado em campos numéricos.
@@ -135,6 +138,31 @@ public class PrincipalUI extends javax.swing.JFrame {
         graficoLinha.setEixoYLabel("Quantidade Ocorrências");
         graficoLinha.setTitulo("Quantidade de Ocorrências Aéreas Registradas no Brasil");
         graficoLinha.setNomeSerie("Ocorrências");
+
+        JDialog janPl = new JDialog();
+        JFXPanel fxPanel = new JFXPanel();
+        janPl.add(fxPanel);
+        janPl.setSize(1200, 720);
+        janPl.setVisible(true);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                fxPanel.setScene(new Scene(graficoLinha.criarLineChart(), 1200, 720));
+            }
+        });
+    }
+
+    private void plotarGraficoFatalidadesPorAno() {
+        atualizar();
+        SortedMap<Integer, Integer> fatalidadesPorAno = ocorrenciasAereas.getFatalidadesPorAno(ocorrenciaDTOs);
+
+        GraficoLinha graficoLinha = new GraficoLinha(fatalidadesPorAno);
+
+        graficoLinha.setEixoXLabel("Ano");
+        graficoLinha.setEixoYLabel("Quantidade de Fatalidades");
+        graficoLinha.setTitulo("Quantidade de Fatalidades Registradas em Ocorrências Aéreas no Brasil");
+        graficoLinha.setNomeSerie("Fatalidades");
 
         JDialog janPl = new JDialog();
         JFXPanel fxPanel = new JFXPanel();
@@ -386,7 +414,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonPlotarGraficoOcorrenciasOcorrenciasMouseClicked
 
     private void buttonPlotarGraficoFatalidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPlotarGraficoFatalidadesMouseClicked
-
+        plotarGraficoFatalidadesPorAno();
     }//GEN-LAST:event_buttonPlotarGraficoFatalidadesMouseClicked
 
     /**
