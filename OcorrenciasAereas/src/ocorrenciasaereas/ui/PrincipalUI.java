@@ -13,6 +13,7 @@ import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javax.swing.JDialog;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.NumberFormatter;
@@ -84,7 +85,8 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
 
     private void preencherUIComProperties() {
-        menuConfiguracoes.setText(bundle.getString("PrincipalUI.menuConfiguracoes"));
+        this.setTitle(bundle.getString("PrincipalUI.windowTitle"));
+        labelSubtitulo.setText(bundle.getString("PrincipalUI.subtitulo"));
         menuSair.setText(bundle.getString("PrincipalUI.menuSair"));
 
         labelFiltros.setText(bundle.getString("PrincipalUI.labelFiltros"));
@@ -165,6 +167,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         JFXPanel fxPanel = new JFXPanel();
         janPl.add(fxPanel);
         janPl.setSize(1200, 720);
+        janPl.setTitle(bundle.getString("graficoOcorrenciasPorAno.windowTitle"));
         janPl.setVisible(true);
 
         Platform.runLater(new Runnable() {
@@ -190,6 +193,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         JFXPanel fxPanel = new JFXPanel();
         janPl.add(fxPanel);
         janPl.setSize(1200, 720);
+        janPl.setTitle(bundle.getString("graficoFatalidadesPorAno.windowTitle"));
         janPl.setVisible(true);
 
         Platform.runLater(new Runnable() {
@@ -228,9 +232,8 @@ public class PrincipalUI extends javax.swing.JFrame {
         buttonAtualizar = new javax.swing.JButton();
         buttonPlotarGraficoOcorrencias = new javax.swing.JButton();
         buttonPlotarGraficoFatalidades = new javax.swing.JButton();
+        labelSubtitulo = new javax.swing.JLabel("", SwingConstants.CENTER);
         menuBarPrincipal = new javax.swing.JMenuBar();
-        menuConfiguracoes = new javax.swing.JMenu();
-        menuURLS = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
@@ -293,23 +296,21 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFiltrosLayout.createSequentialGroup()
-                        .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelFiltrosLayout.createSequentialGroup()
-                                .addComponent(comboComparacaoQtdFatalidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(filtroQuantidadeFatalidades))
-                            .addComponent(filtroCodigo))
-                        .addGap(530, 530, 530))
-                    .addGroup(panelFiltrosLayout.createSequentialGroup()
+                        .addComponent(filtroDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelFiltroDataFinal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filtroDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(569, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFiltrosLayout.createSequentialGroup()
                         .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(filtroTipoOcorrencia, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFiltrosLayout.createSequentialGroup()
-                                .addComponent(filtroDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboComparacaoQtdFatalidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelFiltroDataFinal)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(filtroDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(368, 368, 368))))
+                                .addComponent(filtroQuantidadeFatalidades))
+                            .addComponent(filtroCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
+                        .addGap(530, 530, 530))))
         );
         panelFiltrosLayout.setVerticalGroup(
             panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,12 +363,9 @@ public class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
-        menuConfiguracoes.setText("Configurações");
-
-        menuURLS.setText("URLS");
-        menuConfiguracoes.add(menuURLS);
-
-        menuBarPrincipal.add(menuConfiguracoes);
+        labelSubtitulo.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        labelSubtitulo.setText("labelSubtitulo");
+        labelSubtitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         menuSair.setText("Sair");
         menuSair.addMenuListener(new javax.swing.event.MenuListener() {
@@ -391,6 +389,9 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelSubtitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(scrollPaneOcorrencia)
                         .addGap(12, 12, 12))
                     .addComponent(panelFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -405,6 +406,8 @@ public class PrincipalUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(labelSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -412,7 +415,7 @@ public class PrincipalUI extends javax.swing.JFrame {
                     .addComponent(buttonPlotarGraficoOcorrencias)
                     .addComponent(buttonPlotarGraficoFatalidades))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneOcorrencia, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                .addComponent(scrollPaneOcorrencia, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -491,10 +494,9 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JLabel labelFiltroQuantidadeFatalidades;
     private javax.swing.JLabel labelFiltroTipo;
     private javax.swing.JLabel labelFiltros;
+    private javax.swing.JLabel labelSubtitulo;
     private javax.swing.JMenuBar menuBarPrincipal;
-    private javax.swing.JMenu menuConfiguracoes;
     private javax.swing.JMenu menuSair;
-    private javax.swing.JMenuItem menuURLS;
     private javax.swing.JPanel panelFiltros;
     private javax.swing.JScrollPane scrollPaneOcorrencia;
     private javax.swing.JTable tableOcorrencia;
